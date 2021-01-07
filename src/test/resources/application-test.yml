@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=false
+
+  main:
+    lazy-initialization: true
+
+logging:
+  file:
+    name: 'D:/log/university-test.log'
+
+  level:
+    org.foxminded.botalov: debug
+    org.springframework: debug
+    org.hibernate: debug
+    javax.persistence: debug
+
+  pattern:
+    console: "%d{ISO8601} |%-5level | %-16.16thread | %-32.32c | - %msg%n"
+    file: "%d{ISO8601} |%-5level | %-16.16thread | %-32.32c | - %msg%n"
+
+
+
+
+
