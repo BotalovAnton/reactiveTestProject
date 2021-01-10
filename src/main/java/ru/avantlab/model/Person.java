@@ -1,40 +1,46 @@
 package ru.avantlab.model;
 
-import javax.persistence.*;
-import java.util.Objects;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "persons")
+@Document(collection = "persons")
 public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
 
-    @Column(name = "first_name")
+    @Id
+    private ObjectId id;
+
     private String firstName;
 
-    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
+    @Indexed(unique = true)
     private String email;
 
-    @Column(name = "phone_number")
+    @Indexed(unique = true)
     private String phoneNumber;
 
     public Person() {
     }
 
-    public Person(long id) {
-        this.id = id;
+    public Person(String id) {
+        this.id = new ObjectId(id);
     }
 
-    public long getId() {
-        return id;
+    public Person(String firstName, String lastName, String email, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getId() {
+        return id.toString();
+    }
+
+    public void setId(String id) {
+        this.id = new ObjectId(id);
     }
 
     public String getFirstName() {
@@ -67,20 +73,5 @@ public class Person {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return id == person.id &&
-                Objects.equals(email, person.email) &&
-                Objects.equals(phoneNumber, person.phoneNumber);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email, phoneNumber);
     }
 }

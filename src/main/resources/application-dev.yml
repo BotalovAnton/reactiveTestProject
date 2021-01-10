@@ -1,8 +1,9 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/avantlab
-    username: postgres
-    password: 86751899
+  data:
+    mongodb:
+      database: avantlab
+      username: anton
+      password: anton
 
 logging:
   file:
