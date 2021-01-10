@@ -78,7 +78,7 @@ public class PersonHandler {
 
     public Mono<ServerResponse> delete(ServerRequest request) {
 
-        return Mono.just(service.delete(new Person(request.pathVariable("id"))).subscribe())
+        return Mono.just(service.delete(new Person(request.pathVariable("email"))).subscribe())
                 .flatMap(val -> ServerResponse.noContent().build());
     }
 

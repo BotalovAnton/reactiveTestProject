@@ -39,7 +39,7 @@ public class ReactivePersonServiceImplTest {
                 new Person("Ivan", "Botalov", "botalov@mail.ru", "7-125-1888926")
         );
 
-        repository.saveAll(persons).blockFirst();
+        repository.saveAll(persons).blockLast();
     }
 
     @AfterEach

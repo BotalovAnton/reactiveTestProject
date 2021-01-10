@@ -21,10 +21,10 @@ public class PersonRouter {
     @Bean
     public RouterFunction<ServerResponse> routePerson() {
         return RouterFunctions
-                .route(RequestPredicates.GET("/{email}"), handler::getByEmail)
+                .route(RequestPredicates.GET("/email/{email}"), handler::getByEmail)
                 .andRoute(RequestPredicates.GET("/"), handler::getAll)
                 .andRoute(RequestPredicates.GET("/filter"), handler::getFilteredPersons)
-                .andRoute(RequestPredicates.DELETE("/delete/{id}"), handler::delete)
+                .andRoute(RequestPredicates.DELETE("/delete/{email}"), handler::delete)
                 .andRoute(RequestPredicates.PUT("/update")
                         .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), handler::update)
                 .andRoute(RequestPredicates.POST("/add")

@@ -1,20 +1,15 @@
 package ru.avantlab.model;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "persons")
 public class Person {
-
-    @Id
-    private ObjectId id;
-
     private String firstName;
-
     private String lastName;
 
+    @Id
     @Indexed(unique = true)
     private String email;
 
@@ -24,8 +19,8 @@ public class Person {
     public Person() {
     }
 
-    public Person(String id) {
-        this.id = new ObjectId(id);
+    public Person(String email) {
+        this.email = email;
     }
 
     public Person(String firstName, String lastName, String email, String phoneNumber) {
@@ -35,13 +30,7 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getId() {
-        return id.toString();
-    }
 
-    public void setId(String id) {
-        this.id = new ObjectId(id);
-    }
 
     public String getFirstName() {
         return firstName;
